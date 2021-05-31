@@ -1,0 +1,27 @@
+auto-reload yes
+
+# color scheme
+include /usr/share/doc/newsboat/contrib/colorschemes/plain
+
+# unbind keys
+unbind-key j
+unbind-key k
+unbind-key h
+unbind-key H
+unbind-key L
+unbind-key c
+unbind-key ,
+
+# bind keys
+bind-key ; macro-prefix
+bind-key h quit
+bind-key j down
+bind-key k up
+bind-key l open
+bind-key H prev-feed
+bind-key L next-feed
+bind-key c toggle-show-read-feeds
+
+# subheadings
+highlight feedlist "---.*---" magenta default bold
+highlight feedlist ".*0/0.." default default invis
