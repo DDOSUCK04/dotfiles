@@ -60,9 +60,9 @@ xset r rate 450 30
 sleep 2
 
 # xrandr
-~/Scripts/xrandrrc
+~/scripts/xrandrrc
 dunst&
-~/Scripts/dwmstatus&
+~/scripts/dwmstatus&
 xcompmgr&
 xwallpaper --stretch $wallpaper
 wal -i $wallpaper -a 92

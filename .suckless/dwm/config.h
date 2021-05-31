@@ -134,8 +134,8 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioPrev,          spawn, {.v = prevmus} },
 	{ 0,                            XF86XK_AudioNext,          spawn, {.v = nextmus} },
 	{ 0,                            XF86XK_AudioPlay,          spawn, {.v = playmus} },
-	{ 0,                            XK_Print,                  spawn, SHCMD("~/Scripts/screenshot") },
-	{ ShiftMask,                    XK_Print,                  spawn, SHCMD("~/Scripts/screenshot full") },
+	{ 0,                            XK_Print,                  spawn, SHCMD("~/scripts/screenshot") },
+	{ ShiftMask,                    XK_Print,                  spawn, SHCMD("~/scripts/screenshot full") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
