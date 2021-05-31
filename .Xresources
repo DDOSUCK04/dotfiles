@@ -1,0 +1,68 @@
+!! { Xft } !!
+Xft.antialias: true
+Xft.hinting  : true
+Xft.rgba     : rgb
+Xft.autohint : false
+Xft.hintstyle: hintslight
+Xft.minspace : false
+Xft.lcdfilter: lcddefault
+
+!! { Xterm } !!
+XTerm.vt100.faceName: UW ttyp0:pixelsize=11
+XTerm.vt100.font: 7x13
+XTerm.termName: xterm-256color
+XTerm*vt100.locale: true
+XTerm*vt100.metaSendsEscape:  true
+XTerm*vt100.backarrowKey: false
+XTerm*vt100.allowTitleOps: true
+XTerm*multiScroll: on
+XTerm*border: off
+XTerm*borderWidth: 0
+XTerm*ttyModes: erase ^?
+XTerm*vt100.translations: #override \n\
+                          Ctrl <Key> minus: smaller-vt-font() \n\
+                          Ctrl <Key> equal: larger-vt-font()
+
+!! { URxvt } !!
+URxvt.termName             : rxvt-unicode-256color
+URxvt.buffered             : true
+URxvt.skipBuiltinGlyphs    : false
+
+URxvt.font                 : xft:UW ttyp0:pixelsize=11
+URxvt.intensityStyles      : false
+
+URxvt.allow_bold           : true
+
+URxvt.depth                : 32
+
+URxvt.urgentOnBell         : false
+
+URxvt.internalBorder       : 2
+
+URxvt.saveLines            : 9999
+
+URxvt.scrollBar            : false
+URxvt.scrollTtyOutput      : false
+URxvt.scrollWithBuffer     : true
+URxvt.scrollTtyKeypress    : true
+URxvt.scrollStyle          : rxvt
+
+URxvt.cursorBlink          : true
+
+URxvt.perl-ext-common      : default,url-select,resize-font
+
+URxvt.keysym.M-u           : perl:url-select:select_next
+URxvt.url-select.launcher  : xdg-open
+URxvt.url-select.underline : true
+
+URxvt.iso14755             : false
+URxvt.iso14755_52          : false
+
+URxvt.keysym.M-k           : command:\033]720;1\007
+URxvt.keysym.M-j           : command:\033]721;1\007
+
+URxvt.keysym.M-K           : command:\033]720;5\007
+URxvt.keysym.M-J           : command:\033]721;5\007
+
+!! { dwm } !!
+dwm.borderpx: 2
