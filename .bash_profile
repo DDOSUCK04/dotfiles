@@ -1,6 +1,6 @@
 # programs
 export EDITOR="nvim"
-export TERMINAL="urxvt"
+export TERMINAL="st"
 
 # color 'less'
 export LESS=-R

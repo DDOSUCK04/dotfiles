@@ -6,8 +6,8 @@ FILENAME=$fileDate$fileName
 FILELOCATION="$HOME/Pictures/screenshots/"
 
 case "$1" in
-    "") maim -s $FILELOCATION$FILENAME || exit;;
-    "full") maim $FILELOCATION$FILENAME || exit;;
+    "") scrot -sf $FILELOCATION$FILENAME || exit;;
+    "full") scrot $FILELOCATION$FILENAME || exit;;
 esac
 
 xclip -selection clipboard -t image/png -i $FILELOCATION$FILENAME

@@ -1,24 +1,36 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static unsigned int borderpx        = 1;        /* border pixel of windows */
-static const int startwithgaps[]    = { 1 };	/* 1 means gaps are used by default, this can be customized for each tag */
-static const unsigned int gappx[]   = { 6 };    /* default gap between windows in pixels, this can be customized for each tag */
-static unsigned int snap            = 32;       /* snap pixel */
-static int showbar                  = 1;        /* 0 means no bar */
-static int topbar                   = 1;        /* 0 means bottom bar */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int snap      = 32;       /* snap pixel */
+static const int showbar            = 1;        /* 0 means no bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "UW ttyp0:pixelsize=11" };
 static const char dmenufont[]       = "UW ttyp0:pixelsize=11";
-static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#444444";
-static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#005577";
-static char selbgcolor[]            = "#005577";
-static char *colors[][3] = {
-       /*               fg           bg           border   */
-       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+static const char colorname[16][8]     = {
+	/* solarized dark */
+	"#073642",  /*  0: black    */
+	"#dc322f",  /*  1: red      */
+	"#859900",  /*  2: green    */
+	"#b58900",  /*  3: yellow   */
+	"#268bd2",  /*  4: blue     */
+	"#d33682",  /*  5: magenta  */
+	"#2aa198",  /*  6: cyan     */
+	"#eee8d5",  /*  7: white    */
+	"#002b36",  /*  8: brblack  */
+	"#cb4b16",  /*  9: brred    */
+	"#586e75",  /* 10: brgreen  */
+	"#657b83",  /* 11: bryellow */
+	"#839496",  /* 12: brblue   */
+	"#6c71c4",  /* 13: brmagenta*/
+	"#93a1a1",  /* 14: brcyan   */
+	"#fdf6e3",  /* 15: brwhite  */
+};
+static const char *colors[][3]      = {
+	/*               fg             bg             border   */
+	[SchemeNorm] = { colorname[12], colorname[8],  colorname[0] },
+	[SchemeSel]  = { colorname[8],  colorname[12], colorname[3]  },
+	[SchemeUrg]  = { colorname[8],  colorname[1],  colorname[5]  },
 };
 
 /* tagging */
@@ -30,14 +42,13 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
 };
 
 /* layout(s) */
-static float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
-static int nmaster     = 1;    /* number of clients in master area */
-static int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static const float mfact     = 0.5;  /* factor of master area size [0.05..0.95] */
+static const int nmaster     = 1;    /* number of clients in master area */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -59,8 +70,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "urxvt", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", colorname[8], "-nf", colorname[12], "-sb", colorname[12], "-sf", colorname[8], NULL };
+static const char *termcmd[]  = { "st", NULL };
 /* volume control */
 static const char *upvol[]   = { "amixer", "-q", "set", "Master", "1%+", "unmute", NULL };
 static const char *downvol[] = { "amixer", "-q", "set", "Master", "1%-", "unmute", NULL };
@@ -75,25 +86,6 @@ static const char *downbrigh[] = { "xbacklight", "-dec", "5", NULL };
 /* power */
 static const char *shutdown[] = { "shutdown", "-h", "now", NULL };
 static const char *reboot[]   = { "reboot", NULL };
-
-/*
- * Xresources preferences to load at startup
- */
-ResourcePref resources[] = {
-		{ "color0",        STRING,  &normbgcolor },
-		{ "color0",    STRING,  &normbordercolor },
-		{ "color4",        STRING,  &normfgcolor },
-		{ "color4",         STRING,  &selbgcolor },
-		{ "color8",     STRING,  &selbordercolor },
-		{ "color0",         STRING,  &selfgcolor },
-		{ "borderpx",          	INTEGER, &borderpx },
-		{ "snap",          		INTEGER, &snap },
-		{ "showbar",          	INTEGER, &showbar },
-		{ "topbar",          	INTEGER, &topbar },
-		{ "nmaster",          	INTEGER, &nmaster },
-		{ "resizehints",       	INTEGER, &resizehints },
-		{ "mfact",      	 	FLOAT,   &mfact },
-};
 
 #include <X11/XF86keysym.h>
 static Key keys[] = {
@@ -122,10 +114,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -2 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +2 } },
-	{ MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} },
 	{ 0,                            XF86XK_AudioRaiseVolume,   spawn, {.v = upvol} },
 	{ 0,                            XF86XK_AudioLowerVolume,   spawn, {.v = downvol} },
 	{ 0,                            XF86XK_AudioMute,          spawn, {.v = mutevol} },

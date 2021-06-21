@@ -1,7 +1,5 @@
 #!/bin/sh
 
-wallpaper=$HOME/Pictures/Wallpapers/1610796062978.jpg
-
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
@@ -63,8 +61,6 @@ sleep 2
 ~/scripts/xrandrrc
 dunst&
 ~/scripts/dwmstatus&
-xcompmgr&
-xwallpaper --stretch $wallpaper
-wal -i $wallpaper -a 92
+xsetroot -solid "#586e75"
 
 exec dwm
