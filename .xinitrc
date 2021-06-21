@@ -61,6 +61,6 @@ sleep 2
 ~/scripts/xrandrrc
 dunst&
 ~/scripts/dwmstatus&
-xsetroot -solid "#586e75"
+xsetroot -solid "#001920"
 
 exec dwm

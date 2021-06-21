@@ -28,9 +28,9 @@ static const char colorname[16][8]     = {
 };
 static const char *colors[][3]      = {
 	/*               fg             bg             border   */
-	[SchemeNorm] = { colorname[12], colorname[8],  colorname[0] },
-	[SchemeSel]  = { colorname[8],  colorname[12], colorname[3]  },
-	[SchemeUrg]  = { colorname[8],  colorname[1],  colorname[5]  },
+	[SchemeNorm] = { colorname[11], colorname[8],  colorname[0] },
+	[SchemeSel]  = { colorname[8],  colorname[11], colorname[1]  },
+	[SchemeUrg]  = { colorname[8],  colorname[5],  colorname[5]  },
 };
 
 /* tagging */
@@ -70,7 +70,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", colorname[8], "-nf", colorname[12], "-sb", colorname[12], "-sf", colorname[8], NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", colorname[8], "-nf", colorname[11], "-sb", colorname[11], "-sf", colorname[8], NULL };
 static const char *termcmd[]  = { "st", NULL };
 /* volume control */
 static const char *upvol[]   = { "amixer", "-q", "set", "Master", "1%+", "unmute", NULL };
