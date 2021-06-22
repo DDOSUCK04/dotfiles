@@ -29,7 +29,7 @@ static const char colorname[16][8]     = {
 static const char *colors[][3]      = {
 	/*               fg             bg             border   */
 	[SchemeNorm] = { colorname[11], colorname[8],  colorname[0] },
-	[SchemeSel]  = { colorname[8],  colorname[11], colorname[1]  },
+	[SchemeSel]  = { colorname[8],  colorname[11], colorname[3]  },
 	[SchemeUrg]  = { colorname[8],  colorname[5],  colorname[5]  },
 };
 
